@@ -20,6 +20,7 @@ RUN cd /opt \
     && echo "export PATH=$PATH:/opt/codechecker/build/CodeChecker/bin/" >> /root/.bashrc
 
 EXPOSE 8001
+WORKDIR /works
 
 CMD ["/opt/codechecker/build/CodeChecker/bin/CodeChecker","server","--host=0.0.0.0"]
 #CMD /bin/bash
