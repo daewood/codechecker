@@ -19,9 +19,10 @@ RUN cd /opt \
     && make package \
     && echo "export PATH=$PATH:/opt/codechecker/build/CodeChecker/bin/" >> /root/.bashrc
 
+RUN wget -O /usr/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_amd64 && chmod +x /usr/bin/dumb-init
+
 EXPOSE 8001
 WORKDIR /works
 
 CMD ["/opt/codechecker/build/CodeChecker/bin/CodeChecker","server","--host=0.0.0.0"]
-#CMD /bin/bash
-#ENTRYPOINT
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
